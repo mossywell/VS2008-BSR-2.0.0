@@ -1,0 +1,16 @@
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\bin\Release\CustomActionsInstall.exe
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\obj\Release\CustomActionsInstall.exe
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\bin\Debug\CustomActionsInstall.exe
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\bin\Debug\CustomActionsInstall.pdb
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\obj\Debug\CustomActionsInstall.exe
+C:\Documents and Settings\MThurston\My Documents\Visual Studio 2005\Projects\BSR 2.0.0\CustomActionsInstall\obj\Debug\CustomActionsInstall.pdb
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\bin\Release\CustomActionsInstall.exe
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\obj\Release\ResolveAssemblyReference.cache
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\obj\Release\CustomActionsInstall.exe
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\bin\Debug\CustomActionsInstall.exe
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\bin\Debug\CustomActionsInstall.pdb
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\obj\Debug\ResolveAssemblyReference.cache
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\obj\Debug\CustomActionsInstall.exe
+C:\Home\Mark\BSR 2.0.0\CustomActionsInstall\obj\Debug\CustomActionsInstall.pdb

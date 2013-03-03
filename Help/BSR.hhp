@@ -1,0 +1,29 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=BSR.chm
+Contents file=Table of Contents.hhc
+Default topic=running-overview.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x809 English (United Kingdom)
+
+
+[FILES]
+standard.css
+topic-bsr.htm
+topic-installation.htm
+topic-running.htm
+installation-details.htm
+installation-uninstalling.htm
+running-desktop.htm
+running-contextmenu.htm
+troubleshooting.htm
+running-overview.htm
+running-configfile.htm
+running-logging.htm
+installation-upgrading.htm
+limitations-bugs.htm
+license.htm
+
+[INFOTYPES]
+

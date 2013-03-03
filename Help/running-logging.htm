@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Logging</title>
+<style>@import url(standard.css);</style>
+</head>
+
+<body>
+<h1>Logging</h1>
+Logging is via two locations:
+<ol>
+<li>The log file</li>
+<li>The Windows Application Event Log</li>
+</ol>
+Nearly all logging is via the log file. However, the only circumstance that
+the Application Event Log is used is when BSR is unable to
+write to the log file for whatever reason. This causes BSR to
+close down immediately and the event is logged in the Windows Application
+Event Log.<br><br>
+
+<h2><a name="The_Log_File">The Log File</a></h2>
+The log file is where the normal activity of BSR is logged. This
+includes various types of information, all of which are prefixed by the local
+computer's date and time. The actual amount of information shown is
+customisable. See <a href="running-configfile.htm">Configuration</a> for
+more information.<br><br>
+
+The name of the log file changes every day and is
+"Mossywell.BSR.&lt;date&gt;.log". It can be
+found, by default in Windows XP, in "C:\Documents and Settings\&lt;user name&gt;\My
+Documents\Mossywell\BSR", or in Vista in "C:\Users\&lt;user
+name&gt;\Documents\Mossywell\BSR". In addition, this location also
+contains old log files. The number of old log files that are kept is
+user-definable, but is 10 by default. Older log files are deleted ("pruned")
+automatically.<br><br>
+
+The easiest way to open today's log file
+is via the <a href="running-contextmenu.htm">Context Menu
+</a>.
+
+The six types of information, along with the associated logging levels are:
+<ol>
+<li>ERROR (shown with logging level 1 or above) - This is when an event has
+occurred that you should know about and which requires your immediate
+attention.</li>
+<li>WARNING (shown with logging level 2 or above) - This is when something
+hasn't worked but which doesn't affect BSR's ability to continue
+working. The exception to this is when there's a warning
+stating that "Auto-reboot may not work". This is a warning that the STATS could
+not be obtained. If the STATS can't be obtained, then no attempt to reboot the
+router will be made. See 
+<a href="troubleshooting.htm">Troubleshooting</a> for more information.</li>
+<li>INFO (shown with logging level 3 or above) - This is when the router has
+done something that you might be interested in such as doing an automatic
+reboot, or completing a set of custom commands.</li>
+<li>COMMAND (shown with logging level 4 or above) - This is when a command has
+been sent to the router.</li>
+<li>STATS (shown with logging level 5 or above) - This contains the following
+fields separated by a semi colon:
+<ul>
+<li>The uptime in hours:minutes:seconds</li>
+<li>The downstream sync speed</li>
+<li>The downstream noice margin (SNR)</li>
+<li>The number of received bytes on the PPP interface (i.e. WAN) since last reboot</li>
+<li>The number of transmitted bytes on the PPP interface (i.e. WAN) since last reboot</li>
+</ul>
+The Internet is not contacted to obtain these stats.</li>
+<li>WEBPAGE (shown with logging level 6 or above) - This is when BSR connects
+to the web sites to
+check that the Internet connection is up. If there are any errors, the long
+description is provided in this long file. This long description is the 
+equivalent of the abbreviated description in the tooltip. See <a href=
+"running-desktop.htm">Desktop</a> for more information on the short
+description.</li>
+</ol>
+A logging level of 6 (or above) will show "everything" in the log file, and a
+logging level of 0 will log nothing.
+
+</body>
+</html>

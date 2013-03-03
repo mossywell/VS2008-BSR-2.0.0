@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Overview and FAQ</title>
+<style>@import url(standard.css);</style>
+</head>
+
+<body>
+<h1>Overview</h1>
+A quick overview and some common questions:<br><br>
+<a href="#Why_BSR">Why BSR?</a><br>
+<a href="#Which_Router">Which router can I use this with?</a><br>
+<a href="#Non_Technical">I'm not technical - how do I use it?</a><br>
+<a href="#Anything_Else">Is there anything else I need to know before running
+it?</a><br>
+<a href="#How_Does_It_Work">How does it work?</a><br>
+<a href="#Does_It_Do_Anything_Else">Does it do anything else?</a><br>
+<a href="#When_is_auto_reboot_disabled">When is auto-reboot disabled?</a><br>
+<a href="#Reboot_Success">How do I know that the auto-reboot was successful?</a><br>
+<a href="#How_Technical">How does it do all these things?</a><br>
+<a href="#The_Readme">Version History? Future plans?</a><br>
+<a href="#Poison">This is a great app! Can I pay for it?</a><br>
+<a href="#License">Is there a license agreement?</a>
+
+
+<h2><a name="Why_BSR">Why BSR?</a></h2>
+One of the well-known problems with Sky Broadband is the &quot;V1&quot;
+router that Sky used to provide with its broadband service: the Netgear DG834GT.
+The terms and conditions state that the router supplied by Sky
+must be used to connect to Sky Broadband. (More accurately, the terms and
+conditions state that the customer must allow Sky access to the router at all
+times.) To ensure that users don't even
+try to use their own router, Sky have modified the firmware on more tha one
+occasion to prevent users accessing their own ADSL user name and password.<br>
+<br>
+
+Why would anyone want to use their own router? Mainly because, as many
+users of Sky Broadband have noticed, the router supplied by Sky sometimes
+loses its
+connection to the ADSL service, and as a result the router needs rebooting.
+The amount of rebooting required varies from none at all for the lucky few,
+to many times a day.<br><br>
+
+There are four approaches to resolving this that have been tried.
+<ol>
+<li>Stop using Sky Broadband altogether. For most, this isn't an option because
+the cost is competitive and when it works, it works well.</li>
+<li>Find a method of obtaining the ADSL user name and password and then
+use one's own router. Two such a methods were uncovered by "Asinine
+Monkey" (see his excellent web site for more information: 
+<a href="http://www.asininemonkey.com/netgear-dg834gt-hacking.html">
+Netgear DG834GT Hacking</a>) and more recently by "Mel".</li>
+<li>Automate the process of rebooting the router when the Internet connection
+goes down. This is what this application is all about.</li>
+<li>Update the firmware with one that is not so unreliable. This is the
+approach that both Sky and some users have taken (though Sky's firmware again
+attempts to lock users out of the router).</li>
+</ol>
+What about the name "BSR"? Initially, it was called "Bounce Sky Router" because
+all I could
+think of when naming it is "well, what does it do?". However, "Bounce Sky
+Router" has become a bit too much typing, so it is now simply "BSR".
+
+<h2><a name="Which_Router">Which router can I use this with?</a></h2>
+BSR was designed to work with the Netgear DG834GT running Sky's
+firmware only, but it has since been tested successfully against the following
+firmwares:
+<ul>
+<li>Netgear 1.02.04</li>
+<li>Netgear 1.02.09</li>
+<li>Sky 1.02.28</li>
+<li>UberGT 1.02.04 1.05 Beta 3</li>
+<li>Sky 1.03.??</li>
+</ul>
+It may work with other firmwares (or indeed for the adventurous,
+other routers) but you'll be on your own if you try this!
+
+<h2><a name="Non_Technical">I'm not technical - how do I use it?</a></h2>
+If you're not technical, it's probably safe to assume that you haven't changed
+the web login password. If so, then
+just install and run it. As Alan Partridge once said: "It really is that simple."
+
+<h2><a name="Anything_Else">Is there anything else I need to know before
+running it?</a></h2>
+Yes - one important thing. The router only allows one IP address (i.e. one PC /
+laptop) to log into the router via a web browser at any one time. If a second
+IP address attempts to log into the router whilst the first is logged in*,
+there is an error: "Another Administrator online.". BSR uses the
+web login to obtain its information. Therefore, if you try to run more than one
+copy on the local network, all but the first copy will generate lots of errors.
+It won't cause any problems, but it won't work either, so it is strongly
+recommended only to run this on one IP address on the network. This restriction
+includes Fast User Switching in XP and Vista. If you try to run BSR
+in two
+separate sessions on the same PC, you will receive an error. This is by design.
+<br>
+* Actually, the router "remembers" the last IP address that logged into it for
+a few minutes even after the web browser is closed and during this few minutes,
+an error can still result. The "few minutes" is configurable in the web login:
+Login to the router --> Set Password --> "Administrator login times out after
+idle for &lt;minutes&gt; minutes".
+
+<h2><a name="How_Does_It_Work">How does it work?</a></h2>
+This application is simple in concept. Basically, it connects to two web
+sites at regular intervals (30 seconds by default). The two web sites are Ebay
+UK and Google UK, but they can be changed. I chose those two on the basis 
+that they "never" go down. So, if we lose connection to both, the problem is
+almost certainly at our end and not theirs!<br><br>
+If connection to both sites is lost (or times out), the application sends a command
+to the router to reboot it. During the reboot phase, it disables the automatic reboot
+functionality until it has successfully connected back to the two web sites. This
+prevents a reboot loop. That's it - simple! The results of the attempts to connect
+to the Internet pop up when the mouse is hovered over the application in the 
+System Tray.
+
+<h2><a name="Does_It_Do_Anything_Else">Does it do anything else?</a></h2>
+Indeed it does. It actually can do a number of other things - and the list gets
+longer with each version, so this is just a sample:
+<ul>
+<li>It monitors the downstream speed and signal to noise ratio (SNR or "noise
+margin" as it is sometimes called) every 15 seconds by default. It does this by
+connecting to the router, opening up the web page that displays the stats, and
+then parses out the two values. Both are also displayed on the System Tray
+tooltip.</li>
+<li>Any changes to operating parameters on the router are lost when the router
+is rebooted. So, if you wanted to change the default SNR threshold, that change
+would be lost at the next reboot. Therefore, to overcome this limitation, this
+application can send a set of "custom commands" to the router once it has
+rebooted or indeed on demand.</li>
+<li>It also allows the telnet daemon easily to be started and stopped. Telnetting
+into the router opens up a whole new world of configuration possibilities, which
+are too numerous to go into here, but one excellent possibility is the ability
+to configure inbound Port Address Translation, which can't be done via the web
+interface.</li>
+<li>It displays the ADSL user name and password. It does this by running a
+command on the router to send the user name and password to a text file on 
+the router and it then downloads the file, and parses the output.</li>
+<li>It allows the router's inbuilt stats web page to be displayed.</li>
+<li>It allows the router to be rebooted manually. Note that the custom commands
+mentioned above will run even after a manual reboot.</li>
+<li>There are a few other functions that may come and go as this
+application is developed further. Take a look at this help file for more
+information.</li>
+</ul>
+
+<h2><a name="When_is_auto_reboot_disabled">When is auto-reboot disabled?</a></h2>
+The five circumstances that the router will not be rebooted even though Internet
+connectivity has been lost are:
+<ol>
+<li>BSR has been paused.</li>
+<li>The router has been rebooted automatically or manually and has not yet
+reconnected to the Internet.</li>
+<li>The custom commands are running automatically or manually and the 
+router has not yet reconnected to the Internet.</li>
+<li>The application is on a computer that is within 60 seconds of coming out
+of suspension or hibernation. The reason for this is that immediately following
+a resume from hibernation, the application may not be able to connect to the
+router because the IP stack has not reloaded.</li>
+<li>BSR has lost connection to the router.</li>
+</ol>
+
+<h2><a name="Reboot_Success">How do I know that the auto-reboot was successful?</a></h2>
+BSR uses the uptime from the router and the time taken to reboot
+to decide if the reboot was a success. It logs the success (or otherwise) in
+the log file.
+
+<h2><a name="How_Technical">How does it do all these things?</a></h2>
+How does it run commands on the router? I am indebted to "Asinine Monkey" for
+his
+URL injection method of running commands on the router. Basically, it uses a 
+"hole" in one of the web scripts installed on the router to run any command. 
+Therefore, all commands are done using this method. The custom commands
+also use this method. The syntax of the URL is outside the scope of this help file,
+but a good read of the "Asinine Monkey" web site will fill in the details.
+
+<h2><a name="The_Readme">Version History? Future plans?</a></h2>
+Both of these topics are covered in the readme file called README.TXT. Before
+sending me a PM for a suggested enhancement, check the readme as I may already be
+doing it. 
+
+<h2><a name="Poison">This is a great app! Can I pay for it?</a></h2>
+So far, it's been written out of the goodness of my brain. However, if I get lots of
+PMs at <a href=" www.skyuser.co.uk">www.skyuser.co.uk</a> insisting that
+I take payment, then I might agree to a pint of flat southern bitter or maybe a 
+bottle of Guinness or two! If I get really nagged, I'll eventually divulge my
+Paypal account address. :)
+
+<h2><a name="License">Is there a license agreement?</a></h2>
+Yes - it can be found <a href="license.htm">here</a>.
+</body>
+</html>

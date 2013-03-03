@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Troubleshooting</title>
+<style>@import url(standard.css);</style>
+</head>
+
+<body>
+<h1>Troubleshooting</h1>
+In practice, BSr
+should be self sufficient in that if, for example, there are incorrect config file
+entries, it will simply use the defaults and put those defaults back into the
+registry. However, some conditions may occur that cause an unusual response.
+This section deals with those conditions in a symptomatic manner.
+<h2>Symptoms</h2>
+<ul>
+
+
+<li>A dialog has appeared stating that an unexpected exception has occurred.
+There are various forms that this dialog can take depending on whether the JIT
+debugger is enabled and whether the CLR has generated the error and so on.
+However, they all have the same feature: they all look serious! I've tried to
+capture and handle all exceptions that I think reasonably can occur. However,
+it is always possible that I've missed one. :-)<br><br> 
+Resolution: If one does appear, by all means PM it to me at www.skyuser.co.uk 
+and I'll take a look.<br><br>  
+</li>
+
+
+<li>A dialog has appeared stating that BSR is running:<br><br>
+<div class="center"><img src="images/dialog-bsrrunning.png"></div><br><br>
+Resolution: As only one instance of BSr can be run at any time, take
+a look in the System Tray (bottom right, normally). If you can't see it there,
+it's possible that it is running but has disappeared for some reason. Press
+Ctrl-Alt-Del and use the Task Manager to kill off an executable called 
+Mossywell.BSR.exe. Don't worry: it won't cause any harm to kill off
+BSr abruptly.<br><br>  
+</li>
+
+
+<li>A dialog has appeared stating that BSR is running under a
+different user login:<br><br>
+<div class="center"><img src="images/dialog-bsrrunning-global.png"></div><br><br>
+Resolution: As only one instance of BSr can be run at any time 
+on any computer and it is already running on this computer, it cannot be run
+again without stopping the other instance. To do this, you will need to login
+to that account (or switch to it in the case of Fast User Switching on Windows
+XP) and close it down.<br><br>  
+</li>
+
+<li>A dialog has appeared stating that a critical error has occurred (the text
+in the second line of the error may differ from the one below, which is only
+given as an example):<br><br>
+<div class="center"><img src="images/dialog-critical.png"></div><br><br>
+Resolution: This is a "catch all" error for anything critical that happens and
+which prevents BSr running any longer. The error can vary
+depending on the cause of the problem. If this happens, please PM me at
+www.skyuser.co.uk and I'll take a look.<br><br>  
+</li>
+
+<li>A dialog has appeared stating that a new version is available (the actual
+version numbers may differ from this):<br><br>
+<div class="center"><img src="images/dialog-newversion.png"></div><br><br>
+Resolution: Click on the "Yes" button to download the new version, or the "No"
+button to cancel this dialog.<br><br>  
+</li>
+
+<li>A dialog has appeared stating that the application is shutting down because
+there is an error writing to the log file:<br><br>
+<div class="center"><img src="images/dialog-logerror.png"></div><br><br>
+Resolution: BSr will not run if it cannot write to the log file.
+This is by design and there is no way around it. If you get this error, check
+the cause of why the log file cannot be written to. The error message states
+the log file location. Possible explanations include:
+<ul>
+<li>The file is read only. This would have to have been done manually.</li>
+<li>The file or directory doesn't have write permissions.</li>
+<li>The file is open in an editor that locks the file exclusively.</li>
+</ul>
+When you have resolved the cause of the error, restart BSr.
+<br><br>  
+</li>
+
+
+<li>I'm getting occasional errors in the log file: "A worker
+thread had to be forcibly closed. The thread state was changed from Running to
+Stopped."<br><br>
+Resolution: Ignore this. BSr is multi-threaded. In simple terms,
+this means that the user interface (the bit you can see), the attempts to
+connect to the Internet, and the attempts to connect to the router to retrieve
+statistics all run on their own separate threads. There are times when we want
+to close these threads immediately. Those cases are logged in the event log. 
+They are:
+<ul>
+<li>When the custom commands are run. Due to the internal logic, it is best not
+to have BSr interrogating the web sites when the custom commands
+are queued. Therefore, rather than wait for them to finish, the application
+closes the threads and destroys and resources used. As the thread is only
+performing read-only operations (write operations are marshalled onto the UI
+thread, if you're interested), this is safe.</li>
+<li>When the application is closed. Threads are again killed off
+unceremoniously in this instance and resources destroyed manually. In .Net
+this probably isn't necessary, but old habits die hard!</li>
+</ul>
+</li><br><br>
+
+
+<li>BSr seems to be consuming huge amounts of memory. For
+example, the Task Manager shows it using over 20MB of memory.<br><br>
+Resolution: Do nothing - this is normal. The application is written in c#
+(pronounced C Sharp) and uses the .Net framework. This requires some
+explanation. In the very old days, when you wanted to get a computer to do
+something, you had to write a program that not only did what you wanted it to
+do, you also had to write all the code to display things on screens (or punch
+cards!) and so on. Then, the idea of operating systems came along. They allowed
+the programmer to concentrate on their own code and when they wanted to write
+to disk (for example), they simply told the operating system, and it did all
+the work. Similarly, when you needed to reserve some memory, you simply ask
+the operating system for some and it goes off and gets it for you (instead of
+having to find unused memory yourself and keeping in that space, as it used to
+be done). When you finish using the memory, you tell the operating system and
+it releases the memory making it available to other applications or itself.
+That's a simple version of what most non-.Net (and non-Java) applications
+still do. Then, along came the .Net Framework. Basically, the Framework is
+an application in its own right and runs BSr inside it. The
+.Net Framework does its own memory management, so when BSr
+requests some memory for an object, it asks the Framework and the Framework
+asks the operating system. The two consequences are 1. that the Framework
+itself needs a lot of memory, and 2. when an application tells the Framework
+that it no longer needs the memory, the Framework doesn't tell the operating
+system but instead holds onto it just in case it is needed again. It only
+releases it (i.e. tells the operating system) when it is sure that it is no
+longer needed. This has the advantage that memory is readily available to the
+application when it is needed and the operating system doesn't spend huge
+amounts of time creating and freeing memory in quick succession. If the
+operating system gets short of memory, it tells the .Net Framework, which
+then releases all that it can. So, .Net Framework applications all consume vast
+amounts of memory, but most importantly, they only do so if it is available
+and not needed by the operating system.</li><br><br>
+
+
+<li>The log file says: "WARNING, Another Administrator is connected to the
+router. Auto-reboot functionality is now disabled."
+Also, the router stats show question marks.<br><br>
+Resolution: This happens if another PC / laptop has been used to log into the
+web interface of router within the Administrator timeout period (3 minutes by
+default), or if you are running BSr on multiple devices. If it is
+the latter, deinstall BSr on all devices except the main one (the
+one that is left on all the time is the recommended one). There is no advantage
+in running BSr on many devices! If it is the former, log out of
+the web interface on the other PC / laptop and after the Administrator login 
+timeout period has passed, BSr will be able to log in again.
+NOTE: Whilst BSr is showing this error, the auto-reboot
+functionality will not work. If you are keen to have it working immediately,
+you will need to power cycle the router to clear the old login.
+</li><br><br>
+
+
+<li>The log file says: "WARNING, Problem communicating with router. Auto-reboot
+functionality is now disabled." Also, the router stats show question marks.<br>
+<br>
+Resolution: If it happens many times in a row,
+check the config file for the IP address of the router and the
+password used to log in. This will happen, for example, if the Sky router is not
+your default gateway (perhaps it is a downstream router) and you have not used
+the router_ip_override in the config file. It will also happen if the web login
+password has been changed. Note that this does not affect BSr's
+ability to connect to the Internet.
+</li><br><br>
+
+
+<li>The icon has gone amber or red! <img src="images\router-amber.bmp"> 
+<img src="images\router-red.bmp"><br><br> 
+Resolution: The resolution depends on the colour.<br>
+If it is red, it means that contact
+with the Internet has been lost. Normally, this will result in an automatic
+reboot of the router, during which time it may stay red for a few minutes
+and afterwards it should return back to green. However, the exception
+is when custom commands have been run and one of them causes a disconnection.
+The algorithm for custom commands is to disable the automatic reboot functionality
+until BSr has connected to the Internet. This ensures that if a
+command does cause a disconnection, it doesn't cause a reboot. NOTE: If you
+run a custom command that permanently causes a disconnection, the router will
+never be rebooted automatically. So, take care with the custom commands and 
+test them. Then test them again. (You get the picture!)<br>
+If the icon is yellow, check the log file for which web site is uncontactable.
+Try to access it using a web browser. If the browser can't connect, it probably
+means that the site is down. 
+</li><br><br>
+
+
+<li>When downloading a torrent, BSr keeps rebooting my router!
+<br><br> 
+Resolution: This is because torrents can hog bandwidth and leave little else
+for other traffic. "Other traffic" in this case includes BSr's
+own URL check. So, the URL check takes too long and BSr thinks
+that the Internet connection has been lost, so it reboots the router. Try
+increasing the url_check_timeout value in the <a href="running-configfile.htm">
+config file</a>. 
+</li><br><br>
+
+
+<li>BSr keeps rebooting my router.<br><br> 
+Resolution: This is probably because you have set the SNR threshold too low.
+When you do that, connectivity is restored after a reboot, but at that point
+BSr checks the SNR and discovers it to be below the threshold
+that you have set, so it initiates a new reboot. Try increasing the
+snr_reboot_threshold value in the <a href="running-configfile.htm">
+config file</a>. 
+</li><br><br>
+</ul>
+<br>
+</body>
+</html>

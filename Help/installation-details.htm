@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Installation Details</title>
+<style>@import url(standard.css);</style>
+</head>
+
+<body>
+<h1>Installation Details</h1>
+This section explains how to install, what is installed and where. It is useful if you wish to
+uninstall the software manually, for example.<br><br>
+
+<a href="#Installing">Installation</a><br>
+<a href="#Desktop_Changes">Desktop Changes</a><br>
+<a href="#Installed_Files">Installed Files</a><br>
+<a href="#Registry_Settings">Registry Settings</a>
+
+<h2><a name="Installation">Installation</a></h2>
+To install BSR, run the setup program, setup.exe. Follow through the
+dialog boxes, and at the end click "Close".<br><br>
+
+<img src="images\install-screen1.jpg"><br><br>
+<img src="images\install-screen2.jpg"><br><br>
+<img src="images\install-screen3.jpg"><br><br>
+<img src="images\install-screen4.jpg"><br><br>
+<img src="images\install-screen5.jpg"><br><br>
+
+<h2><a name="Desktop_Changes">Desktop Changes</a></h2>
+The setup program adds an icon to the desktop and start menu.
+
+<h2><a name="Installed_Files">Installed Files</a></h2>
+The default installation directory is:
+<ul>
+<li>C:\Program Files\Mossywell\BSR</li>
+</ul>
+As of version 1.7.0, the files installed into this directory are:<br><br>
+<table>
+<tr>
+<td class="bold">File</td>
+<td class="bold">Details</td>
+</tr>
+<tr>
+<td>README.TXT</td>
+<td>Last minute and version information about the application not present in
+the help pages.</td>
+</tr>
+<tr>
+<td>Mossywell.BSR.exe</td>
+<td>The application itself.</td>
+</tr>
+<tr>
+<td>Mossywell.WebUtils2.dll</td>
+<td>A supporting DLL that handles the HTTP communications asynchronously and
+which is responsible for marshalling calls back onto the UI thread.</td>
+</tr>
+<tr>
+<td>Mossywell.NetUtils1.dll</td>
+<td>A supporting DLL that obtains detailed routing table information
+(more detail than is provided by the framework).</td>
+</tr>
+<tr>
+<td>Mossywell.BSR.exe.config</td>
+<td>The XML configuration file. This application uses XML rather than the
+registry to store information as this is the standard being pushed by Microsoft
+for .Net applications.</td>
+</tr>
+<tr>
+<td>BSR.chm</td>
+<td>This help file!</td>
+</tr>
+<tr>
+<td>Bounce.wav</td>
+<td>A wav file that is played (if it exists) when the router is rebooted
+automatically. Replace this with your favourite router reboot sound. (You
+do have one don't you?)</td>
+</tr>
+</table>
+
+<h2><a name="Registry_Settings">Registry Settings</a></h2>
+The Windows Installer saves a plethora of registry settings. They're
+not listed here, but a trawl for the word "mossywell" in the registry will
+dig them out.
+</body>
+</html>

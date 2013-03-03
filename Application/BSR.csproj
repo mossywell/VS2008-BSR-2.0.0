@@ -1,0 +1,195 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2F21EA3F-C921-43C9-B493-441087A0CE8B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mossywell.BSR</RootNamespace>
+    <AssemblyName>Mossywell.BSR</AssemblyName>
+    <ApplicationIcon>Icons\router-green.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mossywell.NetUtils1, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Mossywell.NetUtils1.dll</HintPath>
+    </Reference>
+    <Reference Include="Mossywell.WebUtils2, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Mossywell.WebUtils2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormError.Designer.cs">
+      <DependentUpon>FormError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogReader.designer.cs">
+      <DependentUpon>FormLogReader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVersion.Designer.cs">
+      <DependentUpon>FormVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbout.designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUsernamePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUsernamePassword.Designer.cs">
+      <DependentUpon>FormUsernamePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
+    <Compile Include="LogManager.cs" />
+    <Compile Include="RouterStatsGetter.cs" />
+    <Compile Include="States.cs" />
+    <Compile Include="RouterCommander.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="VersionGetter.cs" />
+    <Compile Include="WebPageGetter.cs" />
+    <Compile Include="HttpWebRequestAsyncWrapper.cs" />
+    <Compile Include="NotifyIconForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifyIconForm.Designer.cs">
+      <DependentUpon>NotifyIconForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifyIconData.cs" />
+    <Compile Include="MainEntryPoint.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifyIconForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotifyIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Icons\about_image_32x32.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormVersion.resx">
+      <DependentUpon>FormVersion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUsernamePassword.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormUsernamePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\router-amber.ico" />
+    <EmbeddedResource Include="Icons\router-green.ico" />
+    <EmbeddedResource Include="Icons\router-red.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bounce.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Help\BSR.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="FormError.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogReader.resx">
+      <DependentUpon>FormLogReader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\router-amber-norouter.ico" />
+    <EmbeddedResource Include="Icons\router-green-norouter.ico" />
+    <EmbeddedResource Include="Icons\router-red-norouter.ico" />
+    <EmbeddedResource Include="Icons\red-cross.ico" />
+    <None Include="Icons\play.png" />
+    <None Include="Icons\stop.png" />
+    <EmbeddedResource Include="Icons\router-grey.ico" />
+    <EmbeddedResource Include="Icons\router-amber-mm.ico" />
+    <EmbeddedResource Include="Icons\router-amber-norouter-mm.ico" />
+    <EmbeddedResource Include="Icons\router-green-mm.ico" />
+    <EmbeddedResource Include="Icons\router-green-norouter-mm.ico" />
+    <EmbeddedResource Include="Icons\router-grey-mm.ico" />
+    <EmbeddedResource Include="Icons\router-red-mm.ico" />
+    <EmbeddedResource Include="Icons\router-red-norouter-mm.ico" />
+    <Content Include="README.TXT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="TBD not in README.TXT" />
+    <None Include="STATES and DEFAULTS.TXT" />
+    <None Include="System Testing.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

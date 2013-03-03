@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>The Desktop</title>
+<style>@import url(standard.css);</style>
+</head>
+
+<body>
+<h1>BSR Desktop</h1>
+<h2>Desktop Icon</h2>
+Once installed, the application will show as a shortcut icon on the desktop:
+<br><br>
+<div style="text-align: center;">
+<img style="text-align: center;" src="images\desktop-icon.jpg">
+</div><br><br>
+Double-click on the icon to start it. Any settings saved in the XML file from
+when BSR was last run, such as custom commands, will
+automatically be loaded again. The default values, which are used when BSR is
+run the first time, are as follows:
+<br><br>
+<table>
+<tr>
+<td class="bold">Router IP Override</td>
+<td>None</td>
+</tr>
+<tr>
+<td class="bold">Router Username</td>
+<td>admin</td>
+</tr>
+<tr>
+<td class="bold">Router Password</td>
+<td>sky</td>
+</tr>
+<tr>
+<td class="bold">URL Timeout</td>
+<td>5000</td>
+</tr>
+<tr>
+<td class="bold">URLs</td>
+<td>http://www.google.co.uk<br>http://www.ebay.co.uk</td>
+</tr>
+<tr>
+<td class="bold">Custom Commands</td>
+<td>None (but the config file does have sample commands)</td>
+</tr>
+
+</table><br><br>
+<h2>System Tray Icon</h2>
+Once running, BSR will appear as an icon in the system tray
+(shown on the left in the following image):<br><br>
+<div class="center">
+<img src="images\tray-icons.jpg"></div><br><br>
+Of course, your own icons will probably be different to this and the colour
+may be different. If the mouse is hovered over the icon, the popup will also
+show the following information.<br>
+<br>
+<div class="center">
+<img src="images\running-mouseover.png"></div><br><br>
+NOTE: The System Tray tooltip can only have a maximum of 63 characters
+and each end of line (including the last one) takes two characters. If the string
+to be displayed is longer than 63 characters, it is truncated to prevent an
+exception (AKA a "crash"). So, if the text appears a bit odd, this is what may
+have happened. The limitation is an operating system one, not an
+application one.
+
+<h2>System Tray Icon Symbols</h2>
+The following table explains the meaning of the system tray icons.<br><br>
+<table>
+
+<tr>
+<td class="bold">Icon</td>
+<td class="bold">Meaning</td>
+</tr>
+<tr>
+<td><img src="images\router-green.bmp"></td>
+<td>All the URLs were successfully contacted and a valid response was received
+within the URL timeout. Also, the router can successfully be contacted.</td>
+</tr>
+<tr>
+<td><img src="images\router-amber.bmp"></td>
+<td>Some, but not all, the URLs were successfully contacted and with a
+valid response within the URL timeout.  Also, the router can successfully be
+contacted.</td>
+</tr>
+<tr>
+<td><img src="images\router-red.bmp"></td>
+<td>None of the URLs were successfully contacted, or the response received
+was not valid, or the timeout was exceeded within the URL timeout. However,
+the router can successfully be contacted.</td>
+</tr>
+<tr>
+<td><img src="images\router-green-norouter.bmp"></td>
+<td>All the URLs were successfully contacted and a valid response was received
+within the URL timeout. However, the router cannot successfully be contacted.
+</td>
+</tr>
+<tr>
+<td><img src="images\router-amber-norouter.bmp"></td>
+<td>Some, but not all, the URLs were successfully contacted and with a
+valid response within the URL timeout.  Also, the router cannot successfully
+be contacted.</td>
+</tr>
+<tr>
+<td><img src="images\router-red-norouter.bmp"></td>
+<td>None of the URLs were successfully contacted, or the response received
+was not valid, or the timeout was exceeded within the URL timeout. Also,
+the router cannot successfully be contacted.</td>
+</tr>
+<tr>
+<td><img src="images\router-green-mm.bmp"></td>
+<td>All the URLs were successfully contacted and a valid response was received
+within the URL timeout. Also, the router is in maintenance mode.</td>
+</tr>
+<tr>
+<td><img src="images\router-amber-mm.bmp"></td>
+<td>Some, but not all, the URLs were successfully contacted and with a
+valid response within the URL timeout. Also, the router is in maintenance mode.
+</td>
+</tr>
+<tr>
+<td><img src="images\router-red-mm.bmp"></td>
+<td>None of the URLs were successfully contacted, or the response received
+was not valid, or the timeout was exceeded within the URL timeout. Also, the
+router is in maintenance mode.</td>
+</tr>
+<tr>
+<td><img src="images\router-green-norouter-mm.bmp"></td>
+<td>All the URLs were successfully contacted and a valid response was received
+within the URL timeout. However, the router cannot successfully be contacted.
+Also, the router is in maintenance mode.</td>
+</tr>
+<tr>
+<td><img src="images\router-amber-norouter-mm.bmp"></td>
+<td>Some, but not all, the URLs were successfully contacted and with a
+valid response within the URL timeout.  The router cannot successfully
+be contacted. Also, the router is in maintenance mode.</td>
+</tr>
+<tr>
+<td><img src="images\router-red-norouter-mm.bmp"></td>
+<td>None of the URLs were successfully contacted, or the response received
+was not valid, or the timeout was exceeded within the URL timeout. The
+router cannot successfully be contacted. Also, the router is in maintenance
+mode.</td>
+</tr>
+<tr>
+<td><img src="images\router-grey.bmp"></td>
+<td>BSR is paused.</td>
+</tr>
+<tr>
+<td><img src="images\router-grey-mm.bmp"></td>
+<td>BSR is paused. Also, the router is in maintenance mode.</td>
+</tr>
+</table><br><br>
+
+The following table explains the meaning of the short Result codes shown
+by BSR.<br><br>
+<table>
+
+<tr>
+<td class="bold">Code</td>
+<td class="bold">Meaning</td>
+</tr>
+<tr>
+<td>OK</td>
+<td>The response was received successfully.</td>
+</tr>
+<tr>
+<td>PE</td>
+<td>ProtocolError: The response received from the server was complete but
+indicated a protocol-level error. For example, an HTTP protocol error
+such as 401 Access Denied would use this status. For example, you may not have
+permissions to connect to this web site.
+</td>
+</tr>
+<tr>
+<td>NRF</td>
+<td>NameResolutionFailure: The name resolver service could not resolve
+the host name. For example, the name of a non-existent web site was specified
+in the config file.</td>
+</tr>
+<tr>
+<td>CF</td>
+<td>ConnectFailure: The remote service point could not be contacted at the
+transport level. This would indicate a low-level networking problem.</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Timeout: No response was received during the time-out period for a
+request. For example, the web site might be down or running very slowly.</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>SendFailure: A complete request could not be sent to the remote server. For
+example, the web server specified only accepts HTTPS, but HTTP was specified
+in the config file.</td>
+</tr>
+<tr>
+<td>UE</td>
+<td>UnknownError: A catch-all for all other errors.</td>
+</tr>
+<tr>
+<td>?</td>
+<td>Data is unavailable.</td>
+</tr>
+</table>
+
+<h2>The Context Menu</h2>
+To administer BSR, right mouse click on the
+icon. This will launch the <a href="running-contextmenu.htm">context menu</a>:
+<br><br>
+<div class="center">
+<img src="images\context-menu.png"></div><br><br>
+
+<h2>Pausing BSR</h2>
+There may be times when BSR needs to be stopped. For example,
+when planned maintenence is being done that will disconnect the router from
+the computer. Rather than having to unload BSR, it can be paused
+by double-clicking on the icon in the system tray. Pausing it effectively
+disables all of the internal timed functions such as checking the router stats.
+As a result, the auto-reboot functionality is suspended. However, it does
+not disable the ability to load the config or log files, for
+example. Double-clicking on the icon in the system tray again restarts it. Note
+that this causes BSR immediately to check the router stats and
+Internet connectivity.<br><br>
+
+</body>
+</html>

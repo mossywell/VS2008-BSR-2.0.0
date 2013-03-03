@@ -1,0 +1,47 @@
+This is where we need to be careful about the logic!
+
+The Internet is contactable if:
+1. Everything is running normally.
+2.1. We've just done a reboot but haven't waited for a webpagergetter cycle.
+2.2. We've done a reboot and are connected but the reboot never happened.
+2.3. We've done a reboot and reconnected.
+3.1. We've just done custom commands but haven't yet waited for a webpagegetter
+     cycle.
+3.2. We've done custom commands and are connected and a reboot never happened.
+3.3. We've done custom commands and reconnected.
+(They are mutually exclusive states and include all possible states. Therefore,
+we only need to test for the 2nd and 4th and do nothing if it's the 1st or
+3rd.)
+
+Situation	RebootState							Action
+1.			Normal								None
+2.1.		RebootRequestedPreDelay				None (wait for timer to change state)
+2.2.		RebootRequestedPostDelay			DoRunCustomCommands (as in, try anyway!)
+2.3.		RebootRequestedPostDelay			DoRunCustomCommands
+3.1.		CustomCommandsRequestedPreDelay		None (wait for timer to change state)
+3.2.		CustomCommandsRequestedPostDelay	DoResetFlagsAndLogCompletion
+3.3.		CustomCommandsRequestedPostDelay	DoResetFlagsAndLogCompletion
+
+NOTE: 2.2. and 2.3. actually have the same state flag and action. (As do 3.2.
+and 3.3.) This makes things easier as we just need to check the state and
+act accordingly.
+
+
+
+
+            // THESE ARE THE DEFAULT VALUES FOR A WEBRESPONSE
+            _response = new HttpWebAsyncResponse();
+            _response.AbbreviatedStatus = AbbreviatedStatus.OK;
+            _response.ElapsedMilliseconds = 0;
+            _response.Exception = null;
+            _response.FullStatus = String.Empty;
+            _response.RequestStatus = RequestStatus.Stopped;
+            _response.ResponseString = String.Empty;
+            
+            
+            // Set class fields - THESE ARE THE DEFAULTS
+            _uptime = GlobalConstants.STRING_QUESTION_MARK;
+            _speed = GlobalConstants.STRING_QUESTION_MARK;
+            _snr = GlobalConstants.STRING_QUESTION_MARK;
+            _rx = GlobalConstants.STRING_QUESTION_MARK;
+            _tx = GlobalConstants.STRING_QUESTION_MARK;

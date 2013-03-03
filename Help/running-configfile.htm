@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>The Config File</title>
+<style>@import url(standard.css);</style>
+</head>
+
+<body>
+<h1>The Config File</h1>
+The following sections are covered in this topic:<br><br>
+<a href="#The_Default_File">The Default File</a><br>
+<a href="#The_Config_File_Fields">The Config File Fields</a><br>
+<a href="#Making_Changes">Making Changes to the Config File</a><br>
+<a href="#Other_Configurations">Other Configurations</a><br>
+
+<h2><a name="The_Default_File">The Default File</a></h2>
+The default configuration file changes from version to version and is therefore
+not reproduced here. To see the current config file, see the section <a href="#Making_Changes">
+Making Changes to the Config File</a> below.
+
+<h2><a name="The_Config_File_Fields">The Config File Fields</a></h2>
+The ONLY fields that you should edit (if any) are the ones that are in this section.
+These all start with the text<br><br>
+&lt;setting name=<br><br>
+followed by the value in a field that starts:<br><br>
+&lt;value&gt; and ends with &lt;/value&gt;<br><br>
+The name of the setting then appears in quotes. The settings are as follows:<br><br>
+<table>
+<tr>
+<td class="bold">Setting</td>
+<td class="bold">Explanation</td>
+</tr>
+<tr>
+<td>router_username</td>
+<td>This is the user name of the web interface login user. By default it is "admin" and it is
+extremely unlikely that you will ever need to change this.</td>
+</tr>
+<tr>
+<td>router_password</td>
+<td>This is the password of the web interface login user. By default it is "sky", but it can
+be changed in the normal web interface (I have changed mine, for example). If you have
+changed your password, you'll need to change this setting.</td>
+</tr>
+<tr>
+<td>router_ip_override</td>
+<td>This is the IP address of the router. If you leave this field blank or enter an invalid
+IP address, the default gateway of the computer will be used.</td>
+</tr>
+
+<tr>
+<td>router_stats_interval</td>
+<td>This is the interval (i.e. how often) that BSR retrieves statistics from the
+router. Valid values are between 2000 and 120000 ms (i.e. 2 seconds to 2 minutes). If a value
+is entered outside of this range,  the nearest valid number will be used. In addition,
+it must be greater than or equal to the router_command_timeout. If a value is entered that
+is less than router_command_timeout, router_command_timeout will be used instead.
+The default value is 15000 ms.</td>
+</tr>
+<tr>
+<td>router_command_timeout</td>
+<td>This is the timeout value, in milliseconds, that the application uses when checking the
+router stats.  If a response is not received in this time, then this will be logged and the
+application will continue. Valid values are between 2000 and 30000 ms (i.e. 2 seconds to
+30 seconds). If a value is entered outside of this range, the nearest valid number will be
+used. The default value is 5000 ms.</td>
+</tr>
+<tr>
+<td>url_check_interval</td>
+<td>This is the interval (i.e. how often) that BSR checks each of the web sites. 
+Valid values are between 2000 and 300000 ms (i.e. 2 seconds to 5 minutes). If a value
+is entered outside of this range, the nearest valid number will be used. In addition,
+it must be greater than or equal to the url_check_timeout. If a value is entered that
+is less than url_check_timeout, url_check_timeout will be used instead.
+The default value is 30000 ms.</td>
+</tr>
+<tr>
+<td>url_check_timeout</td>
+<td>This is the timeout value, in milliseconds, that the application uses when checking
+each of the web sites. If a response is not received in this time, it is deemed to have failed.
+Valid values are between 2000 and 60000 ms (i.e. 2 seconds to 60 seconds). If a value
+is entered outside of this range, the nearest valid number will be used. The default value
+is 5000 ms. Note that if torrents are regularly used, it might be a good idea
+to increase this value as torrents can cause other traffic to slow down
+including BSR's URL check.</td>
+</tr>
+<tr>
+<td>urls</td>
+<td>This is an array of strings with each member of the array representing the URL that
+BSR checks. By default, there are two web sites because two fits neatly in
+the System Tray icon tooltip. However, you can have more (or less), but note what I said
+about the number of characters in the tooltip <a href="running-desktop.htm">here</a>.
+Also, it is recommended not to set the number of sites to 0, as BSR then
+assumes that there is no Internet connectivity and bounces the router!</td>
+</tr>
+<tr>
+<td>custom_commands_sample</td>
+<td>This section does nothing. It is there to show what custom commands can look like.
+(See the next section.)</td>
+</tr>
+<tr>
+<td>custom_commands</td>
+<td>This is an array of strings with each member of the array representing a command to
+run after the router has been rebooted manually or automatically. The syntax of the string
+is in the URL injection format. See Jose Cardoso's web site for more information:
+<a href="http://www.asininemonkey.com/netgear-dg834gt-hacking.html">
+Netgear DG834GT Hacking</a>. Broadly, the syntax is as if you were typing at the
+telnet prompt, but with all spaces replaced by a "+" symbol. However, there are
+exceptions as there are many characters not allowed in URL strings and which therefore
+have to be "escaped".</td>
+</tr>
+<tr>
+<td>max_logfile_count</td>
+<td>This is the maximum number of log files that will be kept. If the number of
+log files is greater than this amount, the oldest ones are deleted ("pruned")
+automatically. This pruning process generally happens when the application is
+started and just after midnight. In addition, the log file pruning is itself
+logged. The minimum value for max_logfile_count is 1.</td>
+</tr>
+<tr>
+<td>url_check_interval_when_rebooting</td>
+<td>This is the interval (i.e. how often) that BSR checks each of
+the web sites whilst it is rebooting. Valid values are between 2000 and 300000
+ms (i.e. 2 seconds to 5 minutes). If a value is entered outside of this range,
+the nearest valid number will be used. In addition, it must be greater than or
+equal to the url_check_timeout and less than or equal to the url_check_interval
+value. The default value is 10000 ms.</td>
+</tr>
+<tr>
+<td>logging_level</td>
+<td>This defines how much information goes to the log file. A level of 0 logs
+nothing, and a level of 6 logs "everything". Previous versions logged
+everything, so the default has been set to 6. See <a href="running-logging.htm">
+Logging</a> for more information.</td>
+</tr>
+<tr>
+<td>startup_delay</td>
+<td>This is the delay, in milliseconds, that BSR pauses for
+at startup. The icon is loaded and the values are read from the config file,
+and then BSR pauses with the grey paused icon. Valid values are
+between 0 and 90000 ms (i.e. no delay to 90 seconds). If a value is entered
+outside of this range, the nearest valid number will be used. NOTE: During
+this startup pause, you can double-click the icon to start BSR
+immediately instead of waiting.</td>
+</tr>
+<tr>
+<td>snr_reboot_threshold</td>
+<td>This is the SNR ("noise margin") threshold below which BSR
+will reboot the router. If the value is empty, zero - the default, cannot be parsed as
+a double precision number (i.e. something point something), or is a number
+outside the range of a "double" in .Net (which is a seriously big range!) then
+BSR will ignore this field and this functionality will be disabled.
+</td>
+</tr>
+<tr>
+<td>auto_version_check</td>
+<td>This is a boolean ("True" or "False") value that determines whether BSR
+checks for new versions of BSR automatically. "False"
+means that it doesn't and anything else means that it does. It is very strongly
+recommended that this be left as "True", so that no updates are missed.
+</td>
+</tr>
+<tr>
+<td>url_check_disabled</td>
+<td>This is a boolean ("True" or "False") value that determines whether BSR
+checks the URLs. If this is disabled, much of the functionality
+of BSR is disabled. However, it will still reboot the router
+automatically if the SNR drops below the SNR reboot threshold. It is strongly
+recommended that this be left as "True", which is the default value.
+</td>
+</tr>
+</table>
+
+<h2><a name="Making_Changes">Making Changes to the Config File</a></h2>
+To edit the config file, use the "Show Config File" menu option. When you have
+finished editing the file, save it and restart BSR. Config file
+changes are <i>not</i> dynamic - this is a limitation  (or function) of .Net
+Framework config files which are only read when the application starts. (It is
+possible to re-read them whilst the application is running, but given that the
+application is usually run and then left to do its own thing, there
+does not seem much point in implementing this. It may, however, be possible in
+a future version.)
+
+<h2><a name="Other_Configurations">Other Configurations</a></h2>
+There is only one other cofiguration that is not covered by the config file, and that is
+the noise made when the router is rebooted automatically. The sound played is
+Bounce.wav, which by default is located in "C:\Program Files\Mossywell\BSR".
+If the file doesn't exist, nothing is played. The file can be replaced with
+any file called Bounce.wav. The WAV file is played asynchronously, so it can be 
+long!
+
+</body>
+</html>

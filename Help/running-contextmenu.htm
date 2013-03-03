@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Menu Items</title>
+<style>@import url(standard.css);</style>
+</head>
+
+<body>
+<h1>Menu Items</h1>
+Once installed and running, BSR is administered via the context menu,
+which can be accessed by right-clicking on the icon in the System Tray. The
+menu looks like this:<br><br>
+<div class="center"><img src="images\context-menu.png"></div><br><br>
+The menu options are explained in the following table:<br><br>
+<table>
+<tr>
+<td class="bold">Option</td>
+<td class="bold">Explanation</td>
+</tr>
+<tr>
+<td>Update Web Info Now</td>
+<td>This will cause BSR immediately to go and update the web stats
+rather than wait for the next cycle. You might want to do this if you've just rebooted the
+router and are waiting impatiently for BSR to "realise" that it can now
+reconnect!</td>
+</tr>
+<tr>
+<td>Update Stats Now</td>
+<td>This will cause the downstream speed and noise ratio to be updated on the
+system tray icon. In general, the former does not change and the latter changes
+regularly.</td>
+</tr>
+<tr>
+<td>Run Custom Commands Now</td>
+<td>If there are any custom commands that are configured to be run after a reboot,
+they can be run immediately. You will not normally have to select this option. <b>Note
+that when custom commands are running, the automatic reboot feature is temporarily
+disabled until a successful connection is made to the Internet again.</b> The reason
+for this is that it is possible to have a custom command that causes a disconnection,
+such as a change to the threshold SNR. We do not want BSR to reboot
+the router during this phase as the custom settings will be lost (or a reboot cycle will
+ensue).</td>
+</tr>
+<tr>
+<td>Pause / Re-start BSR</td>
+<td>This pauses or re-starts BSR. See <a href="running-desktop.htm">
+The Desktop</a> for more information.</td>
+</tr>
+<tr>
+<td>Display Current Stats</td>
+<td>This opens up a web browser with the stats web page that is seen when logging
+into the router and looking at the router stats.</td>
+</tr>
+<tr>
+<td>Display Detailed Stats</td>
+<td>This displays, in the default text editor, the detailed diagnostics that
+are often requested, particularly on the <a href="http://www.skyuser.co.uk">
+Skyuser</a> forums, when investigating router problems.</td>
+</tr>
+<tr>
+<td>Display ADSL Username and Password</td>
+<td>This displays a dialog that shows the ADSL (not web login) user name and
+password. With these pieces of information, other routers can be used to connect to
+Sky Broadband. (Though doing so is unsupported and breaks the Sky BB contract.)
+Whilst the dialog box is open, BSR continues in the background.</td>
+</tr>
+<tr>
+<td>Start Telnet Daemon</td>
+<td>This starts the telnet daemon on the router. By default, telnet is disabled
+on the Sky routers. <b>Note that there is no authentication to the telnet
+login, so in secure environments, it is recommended that telnet be disabled.
+</td>
+</tr>
+<tr>
+<td>Kill Telnet Daemon</td>
+<td>This kills the telnet daemon on the router.</td>
+</tr>
+<tr>
+<td>Reboot Router Now</td>
+<td>Reboot the router immediately. During such a reboot, the <i>automatic</i>
+reboot feature is temporarily disabled until a successful connection is made
+to the Internet again. If you select this option, you will get a confirmatory
+warning before the reboot takes place in case you change your mind.</td>
+</tr>
+<tr>
+<td>Enter / Leave Maintenance Mode</td>
+<td>This puts BSR into "maintenance mode". This is where the
+whole application  runs as usual except that the auto-reboot functionality is
+disabled. This is a useful mode when there is router maintenance happening but
+you don't want to put the whole application on pause. For example, you might
+want to monitor continuously whilst experimenting with some of the router's
+settings.<BR>
+NOTE: It is strongly recommended that you do not enter Maintenance Mode if
+you are in a reboot cycle. (You will receive a warning if you try to do this.)
+This is because BSR will have no way to know when the cycle is
+complete and will therefore stay permanently in the middle of a reboot
+cycle.</td>
+</tr>
+<tr>
+<td>Display Log in Log Viewer</td>
+<td>This displays the current day's log file in the log viewer. Note that the
+log files can get quite big (depending on the logging level), so keep an eye
+on them!</td>
+</tr>
+<tr>
+<td>View / Edit Config File</td>
+<td>This opens up the config file in notepad. From here it can be edited and saved. Doing so
+requires a restart of BSR for the changes to take effect. Details of the config file
+can be found here: <a href="running-configfile.htm">The Config File</a>.</td>
+</tr>
+<tr>
+<td>Display Readme</td>
+<td>This displays the Readme file (README.TXT) in the default text file editor,
+probably notepad. Whilst the Readme is open, BSR continues in the
+background.</td>
+</tr>
+<tr>
+<td>Help</td>
+<td>This displays this Help file. Whilst the Help is open, BSR
+continues in the background.</td>
+</tr>
+<tr>
+<td>About...</td>
+<td>The About screen. Whilst the dialog box is open, BSR continues in the
+background.</td>
+</tr>
+<tr>
+<td>Exit</td>
+<td>Exit BSR now. Any open threads are killed off and any threads that have
+to be killed of (rather than waiting for them to close), are logged in the Event Log.</td>
+</tr>
+</table>
+</body>
+</html>
